@@ -18,7 +18,6 @@ if ($resultado = mysqli_query($mysqli, $sql))
 		$recurso["nombre"]=$row["nombre"];
 		$recurso["tipo_recurso"]=$row["tipo_recurso"];
 		$recurso["cantidad"]=$row["cantidad"];
-
 		array_push($response,$recurso);
     }
 	$resultado->close();
@@ -27,3 +26,4 @@ if ($resultado = mysqli_query($mysqli, $sql))
  echo json_encode($response);
  
 ?>
+
