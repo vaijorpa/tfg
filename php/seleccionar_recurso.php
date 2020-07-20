@@ -7,21 +7,20 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
 include('conexion.php');
 
 
-  $id_rol=$_GET['id_rol'];
+  $id_recurso=$_GET['id_recurso'];
   
   $response = array();
   
 
 
-	if ($resultado = mysqli_query($mysqli,"select id_rol, nombre, permiso_empleado, permiso_reunion, permiso_sala_reunion from rol where id_rol=".  $id_rol));
+	if ($resultado = mysqli_query($mysqli,"select id_recurso, nombre, tipo_recurso, cantidad from recurso where id_recurso=".  $id_recurso));
 	{	
 		while($row = mysqli_fetch_array($resultado)){
 			$sala= array();
-			$sala["id_rol"]=$row["id_rol"];
+			$sala["id_recurso"]=$row["id_recurso"];
 			$sala["nombre"]=$row["nombre"];
-			$sala["permiso_empleado"]=$row["permiso_empleado"];
-			$sala["permiso_reunion"]=$row["permiso_reunion"];
-			$sala["permiso_sala_reunion"]=$row["permiso_sala_reunion"];
+			$sala["tipo_recurso"]=$row["tipo_recurso"];
+			$sala["cantidad"]=$row["cantidad"];
 			array_push($response,$sala);
 		}
 		$resultado->close();

@@ -4,7 +4,7 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE");
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
-$mysqli = mysqli_connect("localhost", "root", "", "tfg");
+include('conexion.php');
 
 $json = file_get_contents('php://input');
 	

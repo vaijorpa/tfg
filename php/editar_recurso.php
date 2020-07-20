@@ -11,12 +11,10 @@ $json = file_get_contents('php://input');
 	
 $params = json_decode($json);
 
-$sql = "update empleado set	id_rol=$params->id_rol, 
-							nombre='$params->nombre',
-							apellidos='$params->apellidos', 
-							email='$params->email', 
-							password_hash='$params->password_hash'
-							where id_persona=$params->id_persona";
+$sql = "update recurso set	nombre='$params->nombre', 
+							tipo_recurso='$params->tipo_recurso', 
+							cantidad=$params->cantidad 
+							where id_recurso=$params->id_recurso";
 	
 mysqli_query($mysqli, $sql);
  

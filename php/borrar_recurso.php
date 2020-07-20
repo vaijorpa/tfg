@@ -6,22 +6,22 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
 
 include('conexion.php');
 
-		$id_recurso=$_GET['id_recurso'];
 
+	$id_recurso=$_GET['id_recurso'];
+
+
+	$query = "DELETE FROM recurso WHERE id_recurso = ". (int) $id_recurso;
 		
-		$query = "DELETE FROM recurso WHERE id_recurso = ". (int) $id_recurso;
-			
-		$response = mysqli_query($mysqli,$query);
+	$response = mysqli_query($mysqli,$query);
 
-		
-		class Result {}
+	class Result {}
 
-		$response = new Result();
-		$response->resultado = 'OK';
-		$response->mensaje = '¿Estás seguro que quieres eliminar este elemento?';
+	$response = new Result();
+	$response->resultado = 'OK';
+	$response->mensaje = '¿Estás seguro que quieres eliminar este elemento?';
 
-		header('Content-Type: application/json');
-		echo json_encode($response);  
-		
+	header('Content-Type: application/json');
+	echo json_encode($response);  
+
  
 ?>

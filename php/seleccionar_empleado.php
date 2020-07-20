@@ -4,7 +4,7 @@ header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE");
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
 
-$mysqli = mysqli_connect("localhost", "root", "", "tfg");
+include('conexion.php');
 
 
  $id_persona=$_GET['id_persona'];
@@ -13,7 +13,7 @@ $mysqli = mysqli_connect("localhost", "root", "", "tfg");
   
 
 
-	if ($resultado = mysqli_query($mysqli,"select id_persona, id_rol, nombre, apellidos, email, password from empleado where id_persona=".  $id_persona));
+	if ($resultado = mysqli_query($mysqli,"select id_persona, id_rol, nombre, apellidos, email, password_hash from empleado where id_persona=".  $id_persona));
 	{	
 		while($row = mysqli_fetch_array($resultado)){
 			$sala= array();
@@ -22,7 +22,7 @@ $mysqli = mysqli_connect("localhost", "root", "", "tfg");
 			$sala["nombre"]=$row["nombre"];
 			$sala["apellidos"]=$row["apellidos"];
 			$sala["email"]=$row["email"];
-			$sala["password"]=$row["password"];
+			$sala["password_hash"]=$row["password_hash"];
 			array_push($response,$sala);
 		}
 		$resultado->close();

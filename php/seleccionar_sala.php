@@ -4,7 +4,7 @@ header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE");
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
 
-$mysqli = mysqli_connect("localhost", "root", "", "tfg");
+include('conexion.php');
 
 
   $id_sala=$_GET['id_sala'];

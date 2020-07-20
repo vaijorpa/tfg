@@ -6,23 +6,20 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
 
 include('conexion.php');
 
+$id_recurso=$_GET['id_recurso'];
+$id_sala=$_GET['id_sala'];
 
-		$id_reunion=$_GET['id_reunion'];
-		
+$sql = "insert into sala_recurso(id_sala, id_recurso) values ($id_sala, $id_recurso)";
 
-		
-		$query = "DELETE FROM reserva WHERE id_reunion = ". (int) $id_reunion;
-			
-		$response = mysqli_query($mysqli,$query);
+mysqli_query($mysqli, $sql);
 
 		class Result {}
 
 		$response = new Result();
 		$response->resultado = 'OK';
-		
+		$response->mensaje = $sql;
 
 		header('Content-Type: application/json');
 		echo json_encode($response);  
 
- 
 ?>

@@ -4,8 +4,8 @@
 	header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 	header('Content-Type: application/json');
 
-	$mysqli = mysqli_connect("localhost", "root", "", "tfg");
-
+	include('conexion.php');
+	
 	$postdata = file_get_contents("php://input");
 	$request = json_decode($postdata);
 	$token = null;
@@ -15,7 +15,7 @@
 		$email = mysqli_real_escape_string($mysqli, trim($request->email));
 		$password = mysqli_real_escape_string($mysqli, trim($request->password));
 
-		$sql = "SELECT * FROM empleado WHERE email='$email' and password='$password'";
+		$sql = "SELECT * FROM empleado WHERE email='$email' and password_hash='$password'";
 
 		$resultado = mysqli_query($mysqli, $sql);
 

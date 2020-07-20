@@ -9,23 +9,20 @@ include('conexion.php');
 
 $response = array();
 
-$sql = "SELECT empleado.id_persona id_persona, reserva.id_reunion id_reunion, empleado.nombre nombre, empleado.apellidos apellidos, reserva.fecha fecha, reserva.hora_inicio, reserva.hora_fin, asiste
-		FROM asistente, empleado, reserva
-		WHERE empleado.id_persona = asistente.id_persona AND reserva.id_reunion = asistente.id_reunion";
+$id_persona=$_GET['id_persona'];
 
-
-
-
-
+$sql = "SELECT reunion.id_reunion id_reunion, reunion.id_sala id_sala, sala.nombre nombre_sala, reunion.concepto concepto, reunion.fecha fecha, reunion.hora_inicio hora_inicio, reunion.hora_fin hora_fin, asiste
+		FROM asistente, reunion, sala
+		WHERE reunion.id_reunion = asistente.id_reunion AND sala.id_sala = reunion.id_sala AND asistente.id_persona = $id_persona";
 
 if ($resultado = mysqli_query($mysqli, $sql)) 
 {	
 	while($row = mysqli_fetch_array($resultado)){
 		$asistente= array();
-		$asistente["id_persona"]=$row["id_persona"];
 		$asistente["id_reunion"]=$row["id_reunion"];
-		$asistente["nombre"]=$row["nombre"];
-		$asistente["apellidos"]=$row["apellidos"];
+		$asistente["id_sala"]=$row["id_sala"];
+		$asistente["nombre_sala"]=$row["nombre_sala"];
+		$asistente["concepto"]=$row["concepto"];
 		$asistente["fecha"]=$row["fecha"];
 		$asistente["hora_inicio"]=$row["hora_inicio"];
 		$asistente["hora_fin"]=$row["hora_fin"];

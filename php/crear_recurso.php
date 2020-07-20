@@ -11,7 +11,7 @@ $json = file_get_contents('php://input');
 $params = json_decode($json);
 
 
-$sql = "insert into empleado(id_rol, nombre, apellidos, email, password) values ($params->id_rol, '$params->nombre', '$params->apellidos', '$params->email', '$params->password')";
+$sql = "insert into recurso(nombre, tipo_recurso, cantidad) values ('$params->nombre', '$params->tipo_recurso', $params->cantidad)";
 
 mysqli_query($mysqli, $sql);
 
